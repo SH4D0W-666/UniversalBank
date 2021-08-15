@@ -26,14 +26,14 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 MESSAGE_TAGS = {
     messages.WARNING:'danger',
     messages.SUCCESS:'success'
 }
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'bankuniversal.herokuapp.com']
 
 # HTTP Settings
 # SESSION_COOKIE_SECURE
