@@ -1,0 +1,42 @@
+{% extends 'user/index.html' %}
+{% load static %}
+{% block content %}
+<br>
+{% csrf_token %}
+<title>Make Payments</title>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12  d-block">
+                    <h5 style="font-size:30px;text-align:center;color:black; font-family: 'Playfair Display', serif">Make Payments</h5>
+                    <form action="" method="post" id="form" style="width: 600px; margin: 0 auto;">
+                    {% csrf_token %}
+                    <label for="email" id="formhd" class="blk" style="color:black">Sender</label>
+                    <select name="email" id="sender" class="blk inp" style="color:black" required>
+                    <option class="blk" style="color:grey" value="select">Select</option>
+                    {% for cust in customer  %}
+                        <option class="blk" style="color:black" value="{{cust.email}}">{{cust.name}}: {{cust.email}} [AccBal: ₹{{cust.bal}}]</option>
+                    {% endfor %}
+                    </select>
+                    <br>
+                    <label for="amount" id="formhd" class="blk" style="color:black">Amount (in ₹)</label>
+                    <input type="number" class="blk inp" style="color:black" name="amount" id="amt" value="null" required>
+                    <br>
+                    <label for="rec" id="formhd" class="blk" style="color:black">Receiver</label>
+                    <select name="rec" id="reciever" class="blk inp" style="color:black" required>
+                    <option class="blk" style="color:grey" value="select">Select</option>
+                    {% for cust in customer  %}
+                        <option class="blk" style="color:black" value="{{cust.email}}">{{cust.name}}: {{cust.email}}</option>
+                    {% endfor %}
+                    </select>
+                    <br>
+                    <button type="submit" id="but" class="btn btn-outline-success">Pay Now</button>
+                    </form>
+        </div>
+    </div>
+</div>
+
+<p style="padding:10px 10px; display:block; color:white; 
+background-color: #000000;
+background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+text-align:center;" class="bg-dark sticky-bottom fixed-bottom">Copyright © 2021 Universal Bank | All Rights Reserved.</p>
+{% endblock content %}

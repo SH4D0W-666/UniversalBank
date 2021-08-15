@@ -1,0 +1,203 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="{% static 'user/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<style>
+    #bg{
+        background-position: inherit;
+        background-repeat: no-repeat;
+        background-size:contain;
+        background-position:center;
+        background-image: url( "{% static 'user/images/bg_img.jpg' %}");
+        }
+</style>
+<link rel="shortcut icon" href="{% static 'user/icons/bank.png' %}" type="image/x-icon">
+
+    <title>Universal Bank</title>
+</head>
+
+<body id="homepage" data-spy="scroll">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="nav-link active" href="{% url 'index' %}"><i class="fas fa-donate fa-2x" style="color:aqua"></i></a>
+            <a class="navbar-brand" href="{% url 'index' %}">Universal Bank</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'customers' %}">Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'transfermoney' %}">Make Payments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'transferdetails' %}">Payment Record</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message : </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    
+    {% block content %}
+    <title>Universal Bank</title>
+    <!-- <div class="container c1" id="bg">
+        <div class="row">
+            <div class="col-sm-12 text-center col-12 h-100">
+                <h1>
+                    <a href="" class="typewrite" id="headtag" style="color:black" data-period="2000" data-type='[ "Welcome to Universal Bank" ]'>
+                        <span class="nowrap"></span>
+                    </a>
+                </h1>
+            </div>
+        </div>
+    </div> -->
+    <div class="container c2">
+        <div class="row">
+            <div class="col-sm-12 col-lg-4 col-12">
+                <div class="card" style="width: 70%">
+                    <img class="card-img-top" src="{% static 'user/images/user.jpg' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Customers</h5>
+                        <p class="card-text"><i>A unique method for unique customers.</i></p>
+                        <a href="{% url 'customers' %}" class="btn btn-outline-primary">View</a>
+                        <a class="card-icon" href="{% url 'customers' %}"><i class="fas fa-user-tie fa-2x" data-fa-transform="down-4 grow-2 right-2" style="color:blue"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4 col-12">
+                <div class="card" style="width: 70%">
+                    <img class="card-img-top" src="{% static 'user/images/money.jpg' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Payments</h5>
+                        <p class="card-text"><i>Hassle-free transactions in just one click.</i></p>
+                        <a href="{% url 'transfermoney' %}" class="btn btn-outline-success">Pay Now</a>
+                        <a class="card-icon" href="{% url 'transfermoney' %}"><i class="fas fa-money-check-alt fa-2x" data-fa-transform="down-4 grow-4 right-2" style="color:green"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4 col-12">
+                <div class="card" style="width: 70%">
+                    <img class="card-img-top" src="{% static 'user/images/transfer.jpg' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Records</h5>
+                        <p class="card-text"><i>Because every transaction has a history.</i></p>
+                        <a href="{% url 'transferdetails' %}" class="btn btn-outline-dark">Details</a>
+                        <a class="card-icon" href="{% url 'transfermoney' %}"><i class="fas fa-file-invoice-dollar fa-2x" data-fa-transform="down-4 grow-2 right-2" style="color:black"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="jumbotron j1">
+        <h1 class="display-4" style="text-align:center; margin-top: -30px;
+        font-family: sans-serif;">About Us</h1>
+        <p class="lead"><b>Universal Bank</b>, with more than <i>100k</i> employees,
+            is a high quality, customer centric and service driven Bank. Since inception in early 2020,
+            <b>Universal Bank</b> has
+            grown into a ‘Full Service Commercial Bank’ providing a complete range of products, services and
+            technology driven digital offerings, catering to corporate & retail customers.We are committed to serving our
+            millions of retail, business, wealth
+            management, payment, commercial and corporate,
+            and investment services customers across the country and around the world as a trusted financial partner.
+            <b>Universal Bank</b>
+            operates its Investment banking & Brokerage businesses through <b>Universal Securities</b>
+            and its Mutual Fund business, both wholly owned subsidiaries of the Bank. Headquartered in
+            <b><i>Mumbai</i></b>, it has a pan-India presence across all 28 states and 8 Union Territories in India including
+            (and not only limited to) a Representative Office in <b><i>Dubai</i></b>, <b><i>Singapore</i></b> and other International
+            Countries.
+        </p>
+    </div>
+    <section id="footer" class="bg sticky-bottom">
+        <div class="overlap">
+            <h1 style="color: white; margin-left:20px">Contact Us</h1>
+            <p style="color: white;" class="cont_addr"><b>Main Office:</b> 4th Cross Rd, Electronic City, Mumbai, IN</p>
+            <p style="color: white;" class="cont_ph"><b>Phone:</b> 127.0.0.1</p>
+            <p style="color: white;" class="cont_mail"><b>Email:</b> info@unibank.com</p>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <ul class="list-unstyled list-inline social text-center">
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook fa-2x"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-2x"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-google-plus fa-2x"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-envelope fa-2x"></i></a></li>
+                    </ul>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <!-- <strong> Above links are inactive</strong> -->
+                    <br>
+                    <br>
+                    <p class="h6">Copyright © 2021 Universal Bank | All Rights Reserved.</p>
+                    <br>
+                    <p class="h6">Made by Amithesh Gupta</p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </section>
+    
+    {% endblock content %}
+    <br>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'user/js/jq.js' %}"></script>
+    <script src="{% static 'user/js/all.min.js' %}"></script>
+    <script src="{% static 'user/js/new.js' %}"></script>
+    <script src="{% static 'user/js/script.js' %}"></script>
+
+</body>
+
+</html>
