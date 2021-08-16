@@ -21,8 +21,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
-    SECRET_KEY = f.read().strip()
+SECRET_KEY = os.environ('SECRET_KEY')
+# with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
+#     SECRET_KEY = f.read().strip()
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -33,7 +34,7 @@ MESSAGE_TAGS = {
     messages.SUCCESS:'success'
 }
 
-ALLOWED_HOSTS = ['127.0.0.1', 'bankuniversal.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'bankuniversal.herokuapp.com', 'localhost']
 
 # HTTP Settings
 # SESSION_COOKIE_SECURE
